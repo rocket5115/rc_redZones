@@ -2,6 +2,8 @@ local Spheres = {}
 local Spheres2 = {}
 local Spheres_Names = {}
 local Spheres3 = {}
+local Spheres4 = {}
+local Spheres5 = {}
 local SpheresInitialized = false
 local playerPed = PlayerPedId()
 
@@ -23,6 +25,8 @@ Citizen.CreateThread(function()
         Spheres2[i] = (10*(Config.Places[i].sphere/10))
         Spheres_Names[i] = Config.Places[i].Weapons
         Spheres3[i] = Config.Places[i].rgba
+        Spheres4[i] = Config.Places[i].revive
+        Spheres5[i] = Config.Places[i].reviveEvent
     end
     SpheresInitialized = true
 end)
@@ -79,6 +83,11 @@ Citizen.CreateThread(function()
                         GiveWeaponToPed(playerPed, GetHashKey(v), 200)
                     end
                     Entered[i] = true
+                end
+                if GetEntityHealth(playerPed) <= 0 then
+                    if Spheres4[i] and Spheres5[i] then
+                        TriggerEvent(Spheres5[i])
+                    end
                 end
             end
         else
