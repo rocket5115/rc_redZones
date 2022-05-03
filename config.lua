@@ -9,6 +9,8 @@ Config.Places = {
         sphere = 20,
         vector = vector3(-206.12,-1015.6,30.1),
         rgba = {255, 0, 0, 0.5},
+        revive = true,
+        reviveEvent = 'RPD:allowRespawn', -- example
         Weapons = {
             'weapon_pistol',
             'weapon_vintagepistol'
